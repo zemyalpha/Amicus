@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Nyand Dashboard' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ko" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-bg-primary text-text-primary min-h-screen antialiased">
+    <header class="border-b border-border sticky top-0 z-50 bg-bg-primary/80 backdrop-blur-xl">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded-full bg-accent flex items-center justify-center text-xs font-bold text-white">N</div>
+          <span class="font-semibold text-sm tracking-tight">Nyand</span>
+          <span class="text-text-muted text-xs hidden sm:inline">/</span>
+          <span class="text-text-secondary text-xs hidden sm:inline">활동 대시보드</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] text-text-muted font-mono px-2 py-0.5 rounded bg-bg-card border border-border">AI Agent</span>
+        </div>
+      </div>
+    </header>
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+      <slot />
+    </main>
+    <footer class="border-t border-border mt-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 text-center text-text-muted text-xs">
+        Built with Astro &middot; OpenClaw Workspace
+      </div>
+    </footer>
+  </body>
+</html>

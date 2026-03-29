@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getDailyNotes, getMemoryIndex, getStats } from '../lib/markdown';
+
+const notes = getDailyNotes();
+const memory = getMemoryIndex();
+const stats = getStats(notes);
+
+function formatDate(dateStr: string): string {
+  const d = new Date(dateStr + 'T00:00:00');
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  const month = d.getMonth() + 1;
+  const day = d.getDate();
+  const dow = days[d.getDay()];
+  return `${month}월 ${day}일 (${dow})`;
+}
+
+function relativeDate(dateStr: string): string {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const d = new Date(dateStr + 'T00:00:00');
+  const diff = Math.floor((today.getTime() - d.getTime()) / (1000 * 60 * 60 * 24));
+  if (diff === 0) return '오늘';
+  if (diff === 1) return '어제';
+  return `${diff}일 전`;
+}
+---
+
+<Layout>
+  <!-- Stats Cards -->
+  <section class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
+    <div class="bg-bg-card border border-border rounded-xl p-4 sm:p-5">
+      <p class="text-text-muted text-xs mb-1">활동일 수</p>
+      <p class="text-2xl font-semibold tabular-nums">{stats.totalDays}</p>
+    </div>
+    <div class="bg-bg-card border border-border rounded-xl p-4 sm:p-5">
+      <p class="text-text-muted text-xs mb-1">메모리 파일</p>
+      <p class="text-2xl font-semibold tabular-nums">{stats.totalMemories}</p>
+    </div>
+    <div class="bg-bg-card border border-border rounded-xl p-4 sm:p-5">
+      <p class="text-text-muted text-xs mb-1">연속 활동</p>
+      <p class="text-2xl font-semibold tabular-nums">{stats.currentStreak}<span class="text-sm text-text-muted ml-1">일</span></p>
+    </div>
+    <div class="bg-bg-card border border-border rounded-xl p-4 sm:p-5">
+      <p class="text-text-muted text-xs mb-1">마지막 활동</p>
+      <p class="text-sm font-medium mt-1">{stats.lastDate ? relativeDate(stats.lastDate) : '-'}</p>
+    </div>
+  </section>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Activity Timeline -->
+    <section class="lg:col-span-2">
+      <h2 class="text-sm font-medium text-text-secondary mb-4 flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-success inline-block"></span>
+        활동 타임라인
+      </h2>
+
+      {notes.length === 0 ? (
+        <div class="bg-bg-card border border-border rounded-xl p-8 text-center text-text-muted text-sm">
+          아직 기록된 활동이 없습니다.
+        </div>
+      ) : (
+        <div class="space-y-3">
+          {notes.map((note) => (
+            <details class="group bg-bg-card border border-border rounded-xl hover:border-border-hover transition-colors">
+              <summary class="cursor-pointer p-4 sm:p-5 flex items-start gap-4 list-none [&::-webkit-details-marker]:hidden">
+                <div class="flex-shrink-0 mt-0.5">
+                  <div class="w-2 h-2 rounded-full bg-accent"></div>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-2">
+                    <span class="font-medium text-sm">{formatDate(note.date)}</span>
+                    <span class="text-text-muted text-xs font-mono">{note.date}</span>
+                  </div>
+                  {note.summary.length > 0 && (
+                    <ul class="space-y-1">
+                      {note.summary.slice(0, 3).map((item) => (
+                        <li class="text-text-secondary text-xs leading-relaxed truncate">
+                          <span class="text-text-muted mr-1.5">-</span>{item}
+                        </li>
+                      ))}
+                      {note.summary.length > 3 && (
+                        <li class="text-text-muted text-xs">+{note.summary.length - 3}개 더...</li>
+                      )}
+                    </ul>
+                  )}
+                </div>
+                <div class="flex-shrink-0 text-text-muted group-open:rotate-90 transition-transform">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </summary>
+              <div class="px-4 sm:px-5 pb-4 sm:pb-5 pt-0 border-t border-border">
+                <div class="prose prose-invert prose-sm max-w-none pt-4
+                  [&_h1]:text-base [&_h1]:font-semibold [&_h1]:text-text-primary [&_h1]:mb-3
+                  [&_h2]:text-sm [&_h2]:font-semibold [&_h2]:text-text-primary [&_h2]:mb-2 [&_h2]:mt-4
+                  [&_h3]:text-sm [&_h3]:font-medium [&_h3]:text-text-secondary
+                  [&_p]:text-text-secondary [&_p]:text-xs [&_p]:leading-relaxed
+                  [&_ul]:space-y-1 [&_li]:text-text-secondary [&_li]:text-xs
+                  [&_code]:text-accent [&_code]:bg-accent-dim [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-xs
+                  [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2"
+                  set:html={note.html}
+                />
+              </div>
+            </details>
+          ))}
+        </div>
+      )}
+    </section>
+
+    <!-- Memory Viewer Sidebar -->
+    <aside>
+      <h2 class="text-sm font-medium text-text-secondary mb-4 flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+        장기 메모리
+      </h2>
+
+      <div class="bg-bg-card border border-border rounded-xl p-4 sm:p-5">
+        {memory.entries.length > 0 ? (
+          <ul class="space-y-3">
+            {memory.entries.map((entry) => (
+              <li class="group">
+                <p class="text-sm font-medium text-text-primary">{entry.title}</p>
+                <p class="text-xs text-text-muted mt-0.5 leading-relaxed">{entry.description}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div class="prose prose-invert prose-sm max-w-none
+            [&_h1]:text-base [&_h1]:font-semibold [&_h1]:mb-3
+            [&_h2]:text-sm [&_h2]:font-semibold [&_h2]:mb-2 [&_h2]:mt-4
+            [&_p]:text-text-secondary [&_p]:text-xs [&_p]:leading-relaxed
+            [&_ul]:space-y-1 [&_li]:text-text-secondary [&_li]:text-xs
+            [&_a]:text-accent"
+            set:html={memory.html}
+          />
+        )}
+      </div>
+    </aside>
+  </div>
+</Layout>
