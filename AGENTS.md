@@ -12,8 +12,11 @@ Before doing anything else:
 
 1. Read `SOUL.md` — this is who you are
 2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+3. **Read `memory/mistakes/` 폴더** — 최근 실수 확인 (반복 방지)
+4. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+5. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+
+⚠️ **중요**: 모든 쓰기 작업 전에 사용자 승인 필요
 
 Don't ask permission. Just do it.
 
@@ -206,6 +209,36 @@ Periodically (every few days), use a heartbeat to:
 Think of it like a human reviewing their journal and updating their mental model. Daily files are raw notes; MEMORY.md is curated wisdom.
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
+
+## ⚠️ PR 생성 후 필수 작업
+
+**PR을 생성한 후 절대 그냥 두지 마세요. 반드시 다음을 실행:**
+
+```
+PR 생성 완료
+    ↓
+[필수] 즉시 실행:
+1. pending.json 등록 (type: "pr-review")
+2. issue-queue.json 상태 = 'review'
+3. /gemini review 요청
+4. pr-review-cycle 서브에이전트 실행
+```
+
+**이것을 안 하면:**
+- 하트비트에서 PR 감지 못 함
+- 리뷰어 없이 무한 대기
+- 다음 이슈 진행 안 됨
+
+---
+
+## ⚠️ 병합 안내
+
+**병합 가능 상태 알림을 받으면:**
+- "병합해" 또는 "/merge"라고 명시적으로 말해야 병합 실행
+- **자동 병합은 금지** (사용자 승인 필수)
+- 질문만 하고 실행 안 하는 것 금지
+
+---
 
 ## Make It Yours
 

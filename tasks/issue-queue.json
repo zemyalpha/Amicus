@@ -1,0 +1,36 @@
+{
+  "repo": "AmicusLab/Amicus",
+  "current": {
+    "issue_number": 59,
+    "title": "[Phase 2] 기존 실패 테스트 수정 (3건)",
+    "priority": "high",
+    "phase": 2,
+    "status": "in_progress",
+    "started_at": "2026-03-31T00:10:00+09:00"
+  },
+  "queue": [
+    { "issue_number": 59, "title": "[Phase 2] 기존 실패 테스트 수정 (3건)", "priority": "high", "phase": 2 },
+    { "issue_number": 40, "title": "[Phase 2] Human-in-the-loop 승인 워크플로우", "priority": "high", "phase": 2 },
+    { "issue_number": 39, "title": "[Phase 2] 환경변수 검증 강화", "priority": "medium", "phase": 2 }
+  ],
+  "completed": [
+    { "issue_number": 38, "title": "[Phase 2] 민감 정보 자동 마스킹", "pr_number": 58, "merged_at": "2026-03-30T23:35:50+09:00" },
+    { "issue_number": 50, "title": "데몬 SSE 스트리밍 채팅 API", "pr_number": 53, "merged_at": "2026-03-30T02:05:04+09:00" },
+    { "issue_number": 51, "title": "대시보드 채팅 UI 컴포넌트", "pr_number": 54, "merged_at": "2026-03-30T02:59:54+09:00" },
+    { "issue_number": 52, "title": "[Phase 1] 채팅 히스토리 관리", "pr_number": 55, "merged_at": "2026-03-30T12:43:00+09:00" },
+    { "issue_number": 35, "title": "[Phase 1] 도구 실행 루프 고도화", "pr_number": 56, "merged_at": "2026-03-30T15:31:42+09:00" },
+    { "issue_number": 36, "title": "[Phase 1] 대시보드 채팅 기능 추가", "pr_number": 54, "merged_at": "2026-03-30T02:59:54+09:00" },
+    { "issue_number": 37, "title": "[Phase 1] MCP 도구 연동 확장", "pr_number": 57, "merged_at": "2026-03-30T19:47:00+09:00" }
+  ],
+  "backlog": [
+    { "issue_number": 41, "title": "[Phase 3] consolidate() 로직 고도화", "phase": 3 },
+    { "issue_number": 42, "title": "[Phase 3] 시맨틱 서치 도입", "phase": 3 },
+    { "issue_number": 43, "title": "[Phase 3] 사용자 패턴 학습", "phase": 3 },
+    { "issue_number": 44, "title": "[Phase 4] 병렬 작업 실행 엔진", "phase": 4 },
+    { "issue_number": 45, "title": "[Phase 4] 에이전트 간 통신", "phase": 4 },
+    { "issue_number": 46, "title": "[Phase 4] 작업 결과 수집 및 보고", "phase": 4 },
+    { "issue_number": 47, "title": "[Phase 5] 토큰 사용량 실시간 추적", "phase": 5 },
+    { "issue_number": 48, "title": "[Phase 5] 예산 관리 시스템", "phase": 5 },
+    { "issue_number": 49, "title": "[Phase 5] 모델 성능 지속 모니터링", "phase": 5 }
+  ]
+}

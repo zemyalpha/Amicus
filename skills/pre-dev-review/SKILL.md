@@ -86,11 +86,16 @@ TEST_FOCUS: [테스트 우선 순위]
 
 ## Phase 2: 다중 전문가 검토 (병렬)
 
+⚠️ **4개 전문가 검토는 무조건 필수입니다.** 임의로 생략하면 안 됩니다.
+- 필요없는 경우 "N/A — 해당 없음"으로 결과를 기록
+- 모든 검토 결과는 반드시 문서화
+
 4개 서브에이전트를 병렬로 실행. 각 전문가는 IMPL_PLAN.md을 검토하고:
 
 - **APPROVE**: 계획이 검토 관점에서 적합함
 - **REQUEST_CHANGES**: 수정 필요 (이유 + 구체적 대안 명시)
 - **BLOCK**: 심각한 문제 (개발 중지 사유)
+- **N/A**: 해당 전문가 관점에서 검토할 사항 없음 (사유 명시)
 
 ### 🔒 보안 전문가
 
@@ -199,9 +204,11 @@ ALL APPROVE:
     ↓
 계획 승인 후 수정 실행
     ↓
-해당 전문가 재검토
+⚠️ **4개 전문가 모두 재검토 결과 기록 필수**
+    - REQUEST_CHANGES/BLOCK 받은 전문가 → 실제 재검토
+    - APPROVE 받은 전문가 → "N/A - 1차 검토에서 APPROVE, 변경사항 없음" 기록
     ↓
-  ├─ APPROVE → 다음 전문가 또는 Phase 4
+  ├─ ALL APPROVE → Phase 4
   └─ 여전히 BLOCK → 루프 (최대 3회)
        └─ 3회 초과 → 사용자에게 보고
 ```
@@ -282,6 +289,38 @@ ALL APPROVE:
 **Mutation Testing (고급, 선택):**
 - 테스트 품질 검증: 코드에 변이를 주고 테스트가 이를 감지하는지
 - 감지율 80% 이상 권장
+
+**Runtime 동작 검증 (필수):**
+빌드/단위 테스트 통과 후, **반드시 실제 실행으로 동작을 검증**합니다.
+
+방법:
+1. **서버/데몬 실행**: 실제 프로세스를 띄우고 API 호출
+2. **curl/httpie**: 엔드포인트에 직접 요청 전송, 응답/상태코드 확인
+3. **Docker (필요시)**: 안전한 격리 환경에서 실행
+4. **스크린샷**: UI 변경이 있으면 반드시 캡처
+
+검증 항목:
+- [ ] 실제 프로세스 실행 후 정상 응답 (HTTP 200, SSE 이벤트 등)
+- [ ] 에러 시 적절한 에러 응답 (HTTP 4xx/5xx, 에러 메시지)
+- [ ] 보안 검증 (path traversal, 인증 없는 접근 차단 등)
+- [ ] UI 스냅샷 (UI 변경이 있는 경우)
+
+예시:
+```bash
+# API 엔드포인트 동작 확인
+curl -s -X POST http://localhost:3000/api/endpoint \
+  -H "Content-Type: application/json" \
+  -d '{"key":"value"}' | jq .
+
+# SSE 스트리밍 확인
+curl -N --max-time 5 http://localhost:3000/stream
+
+# Docker에서 검증
+docker run --rm -p 3000:3000 myimage &
+sleep 3 && curl -s http://localhost:3000/health
+```
+
+**⚠️ 중요**: 단위 테스트만으로는 충분하지 않습니다. 반드시 실제 실행 환경에서 동작을 증명해야 합니다.
 
 **Snapshot Testing (UI 변경시):**
 - [ ] 이전 스냅샷과 비교
@@ -368,6 +407,8 @@ ALL APPROVE:
 
    ## 전문가 검토 반영
    - 보안: ✅ / 기획: ✅ / 디자인: N/A / 아키텍트: ✅
+
+   Closes #{ISSUE_NUMBER}
    EOF
    )"
    
