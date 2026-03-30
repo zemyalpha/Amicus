@@ -24,6 +24,12 @@
   - **모든 쓰기 작업은 승인 후** — RULES.md에 있어도 사용자 지시 우선
   - **세션 시작 시 이전 지시 확인 필수**
 
+### 2026-03-30: Amicus Z.ai Provider Integration 성공
+- **성과**: Z.ai provider 2종류, 15개 모델 성공 통합
+- **수정된 버그**: Provider Factory, Default Healthy State, AdminPanel 등 6개
+- **PR 생성**: Amicus #17 (feature/zai-api-validation)
+- **기술적 성장**: LLM Provider 아키텍처 이해도 향상
+
 ---
 
 ## 📋 우선순위
@@ -38,3 +44,5 @@
 2. **RULES.md는 가이드일 뿐, 사용자 지시가 최우선**
 3. **세션 시작 시 MEMORY.md + memory/mistakes/ 확인 필수**
 4. **모든 쓰기 작업은 사용자 승인 후**
+5. **Provider 추가 시 구조**: Plugin → Registry → Config → Tests
+6. **Kimi provider 버그 존재**: `packages/core/src/llm/plugins/kimi.ts:31` 수정 필요

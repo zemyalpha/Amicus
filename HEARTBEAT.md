@@ -16,3 +16,4 @@
     5. 병합 가능(reviewDecision=APPROVED + CI 성공)이면 사용자에게 알림
     6. 마지막 체크 시간을 `lastCheckAt`에 기록
 - [ ] 이슈 파이프라인 진행 상태 확인 (issue-pipeline) — 큐에 이슈 있지만 처리 안 됨 감지
+  - ⚠️ **이슈 시작 전 pre-dev-review 필수** — 건너뛰지 말 것
