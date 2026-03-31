@@ -1,3 +1,13 @@
 {
-  "tasks": []
+  "tasks": [],
+  "completed": [{
+    "id": "pr-review-62",
+    "type": "pr-review",
+    "task": "PR #62 리뷰 사이클 (AmicusLab/Amicus)",
+    "prNumber": 62,
+    "repo": "AmicusLab/Amicus",
+    "startedAt": "2026-03-30T16:35:00Z",
+    "completedAt": "2026-03-31T05:18:00Z",
+    "status": "MERGED"
+  }]
 }

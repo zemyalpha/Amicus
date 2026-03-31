@@ -6,10 +6,9 @@
     "priority": "high",
     "phase": 2,
     "status": "in_progress",
-    "started_at": "2026-03-31T00:10:00+09:00"
+    "started_at": "2026-03-31T01:03:00+09:00"
   },
   "queue": [
-    { "issue_number": 59, "title": "[Phase 2] 기존 실패 테스트 수정 (3건)", "priority": "high", "phase": 2 },
     { "issue_number": 40, "title": "[Phase 2] Human-in-the-loop 승인 워크플로우", "priority": "high", "phase": 2 },
     { "issue_number": 39, "title": "[Phase 2] 환경변수 검증 강화", "priority": "medium", "phase": 2 }
   ],

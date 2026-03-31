@@ -55,6 +55,77 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - `trash` > `rm` (recoverable beats gone forever)
 - When in doubt, ask.
 
+## 📦 pm-skills 사용 가이드
+
+pm-skills는 제품 관리(PM) 작업을 위한 65개 스킬입니다.
+
+### 작업 유형별 추천 스킬
+
+| 작업 유형 | 추천 스킬 | 설명 |
+|-----------|----------|------|
+| **제품 발견** | opportunity-solution-tree | 기회-솔루션 트리 작성 |
+| | brainstorm-ideas-* | 아이디어 브레인스토밍 |
+| | identify-assumptions-* | 가정 식별 및 검증 |
+| | prioritize-assumptions | 가정 우선순위 결정 |
+| **제품 전략** | product-strategy | 9섹션 제품 전략 캔버스 |
+| | product-vision | 제품 비전 수립 |
+| | business-model | 비즈니스 모델 캔버스 |
+| | lean-canvas | 린 캔버스 |
+| | pricing-strategy | 가격 전략 |
+| **시장 조사** | user-personas | 사용자 페르소나 작성 |
+| | customer-journey-map | 고객 여정 맵 |
+| | competitor-analysis | 경쟁사 분석 |
+| | market-sizing | 시장 규모 추정 (TAM/SAM/SOM) |
+| **실행** | create-prd | PRD 작성 |
+| | sprint-plan | 스프린트 계획 |
+| | retro | 스프린트 회고 |
+| | user-stories | 사용자 스토리 작성 |
+| **GTM** | gtm-strategy | GTM 전략 수립 |
+| | ideal-customer-profile | ICP 정의 |
+| | growth-loops | 성장 루프 설계 |
+| **데이터** | sql-queries | 자연어 → SQL 변환 |
+| | ab-test-analysis | A/B 테스트 분석 |
+| | cohort-analysis | 코호트 분석 |
+
+### 사용 예시
+
+```
+"기회-솔루션 트리 작성해줘"
+"사용자 페르소나 작성해줘"
+"PRD 작성해줘"
+"A/B 테스트 분석해줘"
+```
+
+---
+
+## ⚠️ 작업 시작 전 필수 규칙
+
+### 1. 어떤 작업인지 파악
+
+새로운 작업을 시작할 때 먼저 **작업 유형**을 확인:
+
+| 유형 | 해당 스킬 | 설명 |
+|------|----------|------|
+| **개발** | pre-dev-review | 코드 작성, 버그 수정, 리팩터링 등 |
+| **PR 생성** | pr-creator | PR 생성 및 작성 |
+| (추가 예정) | (정의 필요) | 차차 추가 |
+
+**⚠️ 작업 유형을 파악하기 어려우면 사용자에게 물어보기**
+
+### 2. 개발 작업이면 pre-dev-review 스킬 무조건 실행
+
+**개발 작업을 시작할 때 반드시 pre-dev-review 스킬을 따라야 합니다.**
+
+1. **스킬 읽기** → `~/.openclaw/workspace/skills/pre-dev-review/SKILL.md`
+2. **Phase 0-5까지 실행** → 사용자에게 "진행할까요?"라고 물어보지 말고 무조건 실행
+3. **문서화** → IMPL_PLAN.md 작성
+
+### 절대 금지 사항
+
+- ❌ "진행할까요?" — 규칙이면 무조건 실행
+- ❌ 스킬 읽고 무시 — 읽었으면 따라야 함
+- ❌ HEARTBEAT.md 무시 — 매번 확인해야 함
+
 ## External vs Internal
 
 **Safe to do freely:**
