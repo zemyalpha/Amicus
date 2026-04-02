@@ -38,3 +38,11 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
+
+## Preferred Models
+
+### Image Analysis
+- **Model:** `zai/glm-4.6v` (Z.ai GLM-4.6 Vision)
+- **Use:** 이미지 분석 시 **무조건** 이 모델만 사용
+- **Note:** 다른 모델로 시도하지 말 것
+- **Added:** 2026-04-03
