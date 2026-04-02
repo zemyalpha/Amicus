@@ -1,18 +1,12 @@
 {
   "repo": "AmicusLab/Amicus",
-  "current": {
-    "issue_number": 59,
-    "title": "[Phase 2] 기존 실패 테스트 수정 (3건)",
-    "priority": "high",
-    "phase": 2,
-    "status": "in_progress",
-    "started_at": "2026-03-31T01:03:00+09:00"
-  },
+  "current": null,
   "queue": [
     { "issue_number": 40, "title": "[Phase 2] Human-in-the-loop 승인 워크플로우", "priority": "high", "phase": 2 },
     { "issue_number": 39, "title": "[Phase 2] 환경변수 검증 강화", "priority": "medium", "phase": 2 }
   ],
   "completed": [
+    { "issue_number": 59, "title": "[Phase 2] 기존 실패 테스트 수정 (3건)", "closed_at": "2026-04-01T00:00:00+09:00" },
     { "issue_number": 38, "title": "[Phase 2] 민감 정보 자동 마스킹", "pr_number": 58, "merged_at": "2026-03-30T23:35:50+09:00" },
     { "issue_number": 50, "title": "데몬 SSE 스트리밍 채팅 API", "pr_number": 53, "merged_at": "2026-03-30T02:05:04+09:00" },
     { "issue_number": 51, "title": "대시보드 채팅 UI 컴포넌트", "pr_number": 54, "merged_at": "2026-03-30T02:59:54+09:00" },
